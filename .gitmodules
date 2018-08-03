@@ -4,3 +4,6 @@
 [submodule "code-bff"]
 	path = code-bff
 	url = https://github.com/8451/code-bff.git
+[submodule "code-service"]
+	path = code-service
+	url = https://github.com/8451/code-service.git
