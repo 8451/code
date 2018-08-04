@@ -1,0 +1,29 @@
+version: '3'
+services:
+  service:
+    build:
+        context: ./code-service
+        dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/code_service
+    links:
+      - mongo
+  web:
+    build:
+      context: ./code-web-ui
+      dockerfile: Dockerfile
+    ports:
+      - 4200:80
+    environment:
+      - HTTP_PROXY=
+      - HTTPS_PROXY=
+    volumes:
+          - ./code-web-ui/dist:/usr/share/nginx/html/
+    links:
+      - service
+  mongo:
+    image: mongo:latest
+    ports:
+    - 27018:27017
